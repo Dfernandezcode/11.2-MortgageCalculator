@@ -1,0 +1,11 @@
+.input-sample{
+    margin: 20px;
+}
+
+.input-sample__input {
+    outline: none;
+    height: 30px;
+    width: 300px;
+    margin: 0 20px 0 0;
+    padding-left: 20px;
+}
