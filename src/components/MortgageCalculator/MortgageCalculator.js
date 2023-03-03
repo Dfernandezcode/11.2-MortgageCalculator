@@ -6,10 +6,10 @@ const MortgageCalculator = () => {
   const [monthlyPayment, setMonthlyPayment] = React.useState(0);
 
   //Referencias a los inputs
-  const houseValue = React.useRef();
-  const savings = React.useRef();
-  const numYears = React.useRef();
-  const annualInterest = React.useRef();
+  const houseValueRef = React.useRef();
+  const savingsRef = React.useRef();
+  const numYearsRef = React.useRef();
+  const annualInterestRef = React.useRef();
 
   //call 4 references
   const getValuesAndCalculateMonthlyPayment = () => {
@@ -18,8 +18,8 @@ const MortgageCalculator = () => {
     const numYears = numYearsRef.current.value;
     const annualInterest = annualInterestRef.current.value;
 
-    calculateMonthlyPayment(houseValue, savings, annualInterest, numYears);
-    console.log(payment);
+    const payment = calculateMonthlyPayment(houseValue, savings, annualInterest, numYears);
+    setMonthlyPayment(payment);
   };
 
   const calculateMonthlyPayment = (
@@ -36,7 +36,11 @@ const MortgageCalculator = () => {
       (1 - Math.pow(1 + monthlyInterest, -numMonths)) / monthlyInterest;
     const monthPayment = moneytoAsk / divider;
     return monthPayment;
+    
   };
+
+  
+
 
   return (
     <div className="calculator">
@@ -128,8 +132,8 @@ const MortgageCalculator = () => {
       >
         Calcular cuota mensual
       </button>
-      <p>
-        Tu cuota mensual sera de: <strong>{monthlyPayment}</strong>
+      <p className="calculator__form-total">
+        Tu cuota mensual sera de:  <strong>{monthlyPayment}</strong>
       </p>
     </div>
   );

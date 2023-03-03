@@ -76,3 +76,17 @@
     color: #eaeaea;
     cursor: pointer;
 }
+
+.calculator__form-total {
+    margin: 0 auto;
+    padding: 20px 20px;
+    text-align: center;
+    font-size: 21px;
+    margin-left: 20px;
+    height: 40px;
+    color: #fff;
+    text-align: right;
+    border: solid 1px #eaeaea;
+    width: fit-content;
+    border-radius: 20px;
+}
