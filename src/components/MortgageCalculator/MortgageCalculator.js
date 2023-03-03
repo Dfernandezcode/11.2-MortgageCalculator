@@ -3,11 +3,11 @@ import "./MortgageCalculator.css";
 
 const MortgageCalculator = () => {
   //States
-  const [monthlyPayment, setMonthlyPayment] = React.useState(0);
-  const [houseValue, setHouseValue] = React.useState(0);
-  const [savingsValue, setSavingsValue] = React.useState(0);
-  const [numYearsValue, setNumYearsValue] = React.useState(0);
-  const [annualInterestValue, setAnnualInterestValue] = React.useState(0);
+  const [monthlyPayment, setMonthlyPayment] = React.useState(null);
+  const [houseValue, setHouseValue] = React.useState(null);
+  const [savingsValue, setSavingsValue] = React.useState(null);
+  const [numYearsValue, setNumYearsValue] = React.useState(null);
+  const [annualInterestValue, setAnnualInterestValue] = React.useState(null);
 
   //Referencias a los inputs
   const houseValueRef = React.useRef();
@@ -88,6 +88,12 @@ const MortgageCalculator = () => {
   const handleAnnualInterestValueIncrease = () => {
     setAnnualInterestValue((prev) => prev + 0.01);
   };
+
+
+//Rounding:
+  let roundedPayment = (Math.round(monthlyPayment * 100) / 100).toFixed(2);
+  let roundedAnnualInterest =(Math.round(annualInterestValue *100)/100).toFixed(2);
+
 
   return (
     <div className="calculator">
@@ -207,7 +213,7 @@ const MortgageCalculator = () => {
             name="annualInterest"
             id="annualInterest"
             placeholder="Intereses"
-            value={annualInterestValue.toFixed(2)}
+            value={roundedAnnualInterest}
             onChange={(event) => setAnnualInterestValue(Number(event.target.value))}
           />
 
@@ -227,7 +233,7 @@ const MortgageCalculator = () => {
         Calcular cuota mensual
       </button>
       <p className="calculator__form-total">
-        Tu cuota mensual sera de: <strong>{monthlyPayment.toFixed(2)}</strong>
+        Tu cuota mensual sera de: <strong>{roundedPayment}</strong>
       </p>
     </div>
   );
