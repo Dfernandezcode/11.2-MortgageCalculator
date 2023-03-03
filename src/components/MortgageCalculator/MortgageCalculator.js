@@ -4,6 +4,10 @@ import "./MortgageCalculator.css";
 const MortgageCalculator = () => {
   //States
   const [monthlyPayment, setMonthlyPayment] = React.useState(0);
+  const [houseValue, setHouseValue] = React.useState(0);
+  const [savingsValue, setSavingsValue] = React.useState(0);
+  const [numYearsValue, setNumYearsValue] = React.useState(0);
+  const [annualInterestValue, setAnnualInterestValue] = React.useState(0);
 
   //Referencias a los inputs
   const houseValueRef = React.useRef();
@@ -39,8 +43,40 @@ const MortgageCalculator = () => {
     
   };
 
-  
+//button increase and decrease
 
+  //House Value
+  const handleHouseValueDecrease = () => {
+    setHouseValue((prev) => prev - 5000);
+  };
+  const handleHouseValueIncrease = () => {
+    setHouseValue((prev) => prev + 5000);
+  };
+
+  //Savings
+  const handleSavingsValueDecrease = () => {
+    setSavingsValue((prev) => prev - 1000);
+  };
+  const handleSavingsValueIncrease = () => {
+    setSavingsValue((prev) => prev + 1000);
+  };
+
+    //Installments
+    const handleNumYearsValueDecrease = () => {
+      setNumYearsValue((prev) => prev - 1);
+    };
+    const handleNumYearsValueIncrease = () => {
+      setNumYearsValue((prev) => prev + 1);
+    };
+
+
+     //Interest Rates
+     const handleAnnualInterestValueDecrease = () => {
+      setAnnualInterestValue((prev) => prev - 0.01);
+    };
+    const handleAnnualInterestValueIncrease = () => {
+      setAnnualInterestValue((prev) => prev + 0.01);
+    };
 
   return (
     <div className="calculator">
@@ -51,7 +87,7 @@ const MortgageCalculator = () => {
         <label className="calculator__form-box">
           <h2>Introduce el valor de la casa</h2>
 
-          <button className="calculator__form-box-btn--neg">-</button>
+          <button onClick={handleHouseValueDecrease} className="calculator__form-box-btn--neg">-</button>
 
           <input
             className="calculator__form-box-input"
@@ -60,9 +96,11 @@ const MortgageCalculator = () => {
             name="houseValue"
             id="houseValue"
             placeholder="Introduce el valor de la casa"
+            value={houseValue}
+            onChange={(e) => setHouseValue(Number(e.target.value))}
           />
 
-          <button className="calculator__form-box-btn--pos">+</button>
+          <button onClick={handleHouseValueIncrease} className="calculator__form-box-btn--pos">+</button>
         </label>
       </fieldset>
 
@@ -71,7 +109,7 @@ const MortgageCalculator = () => {
         <label className="calculator__form-box">
           <h2>Introduce Ahorros</h2>
 
-          <button className="calculator__form-box-btn--neg">-</button>
+          <button onClick={handleSavingsValueDecrease} className="calculator__form-box-btn--neg">-</button>
 
           <input
             className="calculator__form-box-input"
@@ -79,10 +117,11 @@ const MortgageCalculator = () => {
             type="number"
             name="savings"
             id="savings"
+            value={savingsValue}
             placeholder="Ahorros"
           />
 
-          <button className="calculator__form-box-btn--pos">+</button>
+          <button onClick={handleSavingsValueIncrease} className="calculator__form-box-btn--pos">+</button>
         </label>
       </fieldset>
 
@@ -91,7 +130,7 @@ const MortgageCalculator = () => {
         <label className="calculator__form-box">
           <h2>Introduce el plazo en anos</h2>
 
-          <button className="calculator__form-box-btn--neg">-</button>
+          <button onClick={handleNumYearsValueDecrease} className="calculator__form-box-btn--neg">-</button>
 
           <input
             className="calculator__form-box-input"
@@ -100,9 +139,10 @@ const MortgageCalculator = () => {
             name="numYears"
             id="numYears"
             placeholder="Plazos"
+            value={numYearsValue}
           />
 
-          <button className="calculator__form-box-btn--pos">+</button>
+          <button onClick={handleNumYearsValueIncrease} className="calculator__form-box-btn--pos">+</button>
         </label>
       </fieldset>
 
@@ -111,7 +151,7 @@ const MortgageCalculator = () => {
         <label className="calculator__form-box">
           <h2>Introduce el interes de la hipoteca (tipo fijo)</h2>
 
-          <button className="calculator__form-box-btn--neg">-</button>
+          <button onClick={handleAnnualInterestValueDecrease} className="calculator__form-box-btn--neg">-</button>
 
           <input
             className="calculator__form-box-input"
@@ -120,9 +160,10 @@ const MortgageCalculator = () => {
             name="annualInterest"
             id="annualInterest"
             placeholder="Intereses"
+            value={annualInterestValue}
           />
 
-          <button className="calculator__form-box-btn--pos">+</button>
+          <button onClick={handleAnnualInterestValueIncrease} className="calculator__form-box-btn--pos">+</button>
         </label>
       </fieldset>
 
