@@ -36,10 +36,13 @@ const InputSample = () => {
         type="text"
         placeholder="enter name..."
       />
-
-      <button className="input-sample__btn" onClick={getInputValue}>
+<p><button className="input-sample__btn" onClick={getInputValue}>
         Refresh Value
-      </button>
+      </button></p>
+<p><button className="input-sample__btn" onClick={ () => inputReference.current.focus()}>
+        Focus input field to fill.
+      </button></p>
+      
     </div>
   );
 };
