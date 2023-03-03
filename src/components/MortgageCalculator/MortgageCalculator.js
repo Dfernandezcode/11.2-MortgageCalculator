@@ -31,6 +31,8 @@ const MortgageCalculator = () => {
     setMonthlyPayment(payment);
   };
 
+
+  //percentages
   const calculateMonthlyPayment = (
     houseValue,
     savings,
@@ -89,11 +91,11 @@ const MortgageCalculator = () => {
     setAnnualInterestValue((prev) => prev + 0.01);
   };
 
-
-//Rounding:
+  //Rounding:
   let roundedPayment = (Math.round(monthlyPayment * 100) / 100).toFixed(2);
-  let roundedAnnualInterest =(Math.round(annualInterestValue *100)/100).toFixed(2);
-
+  let roundedAnnualInterest = (
+    Math.round(annualInterestValue * 100) / 100
+  ).toFixed(2);
 
   return (
     <div className="calculator">
@@ -114,6 +116,7 @@ const MortgageCalculator = () => {
           <input
             className="calculator__form-box-input"
             ref={houseValueRef}
+            defaultValue="300000"
             type="number"
             name="houseValue"
             id="houseValue"
@@ -146,6 +149,7 @@ const MortgageCalculator = () => {
           <input
             className="calculator__form-box-input"
             ref={savingsRef}
+            defaultValue="30000"
             type="number"
             name="savings"
             id="savings"
@@ -181,6 +185,7 @@ const MortgageCalculator = () => {
             name="numYears"
             id="numYears"
             placeholder="Plazos"
+            defaultValue="30"
             value={numYearsValue}
             onChange={(event) => setNumYearsValue(Number(event.target.value))}
           />
@@ -213,8 +218,9 @@ const MortgageCalculator = () => {
             name="annualInterest"
             id="annualInterest"
             placeholder="Intereses"
+            defaultValue="2.50"
             value={roundedAnnualInterest}
-            onChange={(event) => setAnnualInterestValue(Number(event.target.value))}
+            onChange={(event) => setHouseValue(Number(event.target.value))
           />
 
           <button
